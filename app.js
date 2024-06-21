@@ -2,10 +2,12 @@ require('dotenv').config();
 const express = require("express");
 const app= express();
 const sequelize = require('./utils/database.js');
+const cors = require("cors");
 
 const port = process.env.PORT || 4000;
 
-app.use(require("cors")()); // origenes cruzados
+app.use(cors()); // Permitir orígenes cruzados
+app.use(express.json()); // Middleware para analizar JSON
 
 app.get("/",(req,res)=>{
     res.send(`<h1>hola usuario</h1>`)
