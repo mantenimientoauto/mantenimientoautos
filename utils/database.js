@@ -1,4 +1,5 @@
 const { Sequelize } = require('sequelize');
+require('dotenv').config();
 
 // Configuración de Sequelize con SSL habilitado
 const sequelize = new Sequelize('bdmantenimientoauto', 'bdmantenimientoauto_user', 'L7CMRkl8HXe8I8ISbrVEdIg7AtbFmW5J', {
@@ -13,16 +14,4 @@ const sequelize = new Sequelize('bdmantenimientoauto', 'bdmantenimientoauto_user
   }
 });
 
-// Función para probar la conexión
-async function testConnection() {
-  try {
-    await sequelize.authenticate();
-    console.log('Connection has been established successfully.');
-  } catch (error) {
-    console.error('Unable to connect to the database:', error);
-  } finally {
-    await sequelize.close(); // Cierra la conexión
-  }
-}
-
-testConnection();
+module.exports = sequelize;
