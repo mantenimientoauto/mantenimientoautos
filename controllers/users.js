@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 const pgp = require('pg-promise')();
 const db = pgp('postgres://username:password@localhost:5432/mydatabase');
 const sha256 = require('js-sha256');
@@ -57,3 +58,11 @@ exports.register = async (req, res) => {
 // };
 
 
+=======
+// const User = require("../models/modelUser");
+
+
+// exports.login = async (req, res) => {
+    
+// };
+>>>>>>> 9c5bff78e74acd628c007cf41fe41ef6e1130b11
