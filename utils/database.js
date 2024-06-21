@@ -1,15 +1,14 @@
 const { Sequelize } = require('sequelize');
 require('dotenv').config();
 
-// Configuración de Sequelize con SSL habilitado
-const sequelize = new Sequelize('bdmantenimientoauto', 'bdmantenimientoauto_user', 'L7CMRkl8HXe8I8ISbrVEdIg7AtbFmW5J', {
-  host: 'dpg-cpqdch4s1f4s73cj168g-a.oregon-postgres.render.com',
-  port: 5432,
+const sequelize = new Sequelize(process.env.DB_NAME, process.env.DB_USER, process.env.DB_PASSWORD, {
+  host: process.env.DB_HOST,
+  port: process.env.DB_PORT,
   dialect: 'postgres',
   dialectOptions: {
     ssl: {
-      require: true, // Requerir SSL
-      rejectUnauthorized: false // Deshabilitar la verificación de certificados (puede ser necesario en algunos entornos)
+      require: true,
+      rejectUnauthorized: false
     }
   }
 });

@@ -6,12 +6,12 @@ const sequelize = require('../utils/database.js'); // Ajusta la ruta según tu e
 const Vehiculo = sequelize.define('Vehiculo', {
     item: {
         type: DataTypes.INTEGER,
-        primaryKey: true,
         autoIncrement: true,
         allowNull: false
     },
     placa: {
         type: DataTypes.STRING(50),
+        primaryKey: true,
         allowNull: false,
         unique: true // La placa debe ser única
     },
@@ -29,6 +29,10 @@ const Vehiculo = sequelize.define('Vehiculo', {
     },
     marca: {
         type: DataTypes.STRING(50)
+    },
+    dir_img: {
+      type: DataTypes.STRING(300), // Ajusta el tamaño según tus necesidades
+      allowNull: true // Ajusta según tus requerimientos de nullabilidad
     }
 }, {
     // Opciones del modelo
