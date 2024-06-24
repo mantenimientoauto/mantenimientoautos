@@ -17,7 +17,7 @@ app.use(cors({
 
 app.get("/", (req, res) => {
     res.send(`<h1>¡Hola usuario!</h1>`);
-    console.log("Bienvenido al servidor de mantenimiento");
+    console.log("Bienvenido al servidor de mantenimiento de autos");
 });
 
 // Importar y usar el enrutador para '/user' y '/vehiculos'
