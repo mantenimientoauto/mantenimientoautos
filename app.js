@@ -1,13 +1,19 @@
 const express = require("express");
 const app = express();
 const sequelize = require('./utils/database');
+const cors = require('cors'); 
+
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 const port = process.env.PORT || 4000;
 
-app.use(require("cors")()); // Habilitar CORS para peticiones cruzadas
+//app.use(require("cors")()); // Habilitar CORS para peticiones cruzadas
+app.use(cors({ 
+    credentials: true, 
+    origin: ['http://localhost:4000', 'https://mantenimientoautosbackend.onrender.com'] 
+  }));
 
 app.get("/", (req, res) => {
     res.send(`<h1>¡Hola usuario!</h1>`);
