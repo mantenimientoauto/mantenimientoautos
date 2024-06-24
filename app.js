@@ -9,11 +9,14 @@ app.use(express.urlencoded({ extended: true }));
 
 const port = process.env.PORT || 4000;
 
-//app.use(require("cors")()); // Habilitar CORS para peticiones cruzadas
-app.use(cors({ 
-    credentials: false, 
-    origin: ['http://localhost:4000', 'https://mantenimientoautosbackend.onrender.com'] 
-  }));
+const corsOptions = {
+    origin: ['http://localhost:3000', 'https://mantenimientoautosbackend.onrender.com'],
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
+    credentials: true
+};
+
+app.use(cors(corsOptions));
 
 app.get("/", (req, res) => {
     res.send(`<h1>¡Hola usuario!</h1>`);
