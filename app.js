@@ -35,7 +35,7 @@ sequelize.authenticate()
         console.log('Modelos sincronizados con la base de datos.');
         // Iniciar el servidor una vez que todo esté listo
         app.listen(port, () => {
-            console.log(`El servidor está escuchando en el puerto ${port}`);
+            console.log(`El servidor está escuchando en el puerto: ${port}`);
         });
     })
     .catch(err => {
