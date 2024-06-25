@@ -19,7 +19,8 @@ exports.register = async (req, res) => {
     const user = await User.create({
       nit,
       contrasena: hashedPassword,
-      fecha_registro: new Date()
+      fecha_registro: new Date(),
+      rol: 'user'
     });
 
     res.status(201).json({ message: 'Usuario registrado exitosamente', user });
@@ -44,15 +45,21 @@ exports.login = async (req, res) => {
       return res.status(401).json({ message: 'Contraseña incorrecta' });
     }
 
+    // Verificar el rol del usuario
+    if (user.rol !== 'user' && user.rol !== 'admin') {
+      return res.status(403).json({ message: 'Acceso no autorizado' });
+    }
+
     // Generar el token JWT
-    const token = jwt.sign({ nit: user.nit }, secretKey, { expiresIn: '1h' });
+    const token = jwt.sign({ nit: user.nit, rol: user.rol }, secretKey, { expiresIn: '1h' });
 
     res.status(200).json({
       message: 'Inicio de sesión exitoso',
       token,
       user: {
         nit: user.nit,
-        fecha_registro: user.fecha_registro
+        fecha_registro: user.fecha_registro,
+        rol: user.rol
       }
     });
   } catch (error) {
