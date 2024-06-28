@@ -1,5 +1,5 @@
 const { DataTypes } = require('sequelize');
-const sequelize = require('./database.js'); // Asegúrate de que este camino sea correcto y que exportes sequelize correctamente
+const sequelize = require('../utils/database.js'); // Asegúrate de que este camino sea correcto y que exportes sequelize correctamente
 
 const Mantenimiento = sequelize.define('Mantenimiento', {
   id: {
@@ -16,7 +16,7 @@ const Mantenimiento = sequelize.define('Mantenimiento', {
     allowNull: true
   },
   vehiculo_placa: {
-    type: DataTypes.STRING(10),
+    type: DataTypes.STRING(50),
     allowNull: true
   },
   usuario_nit: {
