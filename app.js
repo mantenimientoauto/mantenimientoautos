@@ -1,9 +1,11 @@
 const express = require("express");
 const app = express();
 const sequelize = require('./utils/database.js');
+const models = require('./models/relations.js');
+
+
 const cors = require('cors'); 
 require('dotenv').config();
-
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
@@ -26,6 +28,7 @@ app.get("/", (req, res) => {
 // Importar y usar el enrutador para '/user' y '/vehiculos'
 app.use("/user", require("./routes/users.js"));
 app.use("/vehiculos", require("./routes/vehiculos.js"));
+app.use("/mantenimientos", require("./routes/registroMantenimiento.js"));
 
 // Conectar a la base de datos y arrancar el servidor
 sequelize.authenticate()

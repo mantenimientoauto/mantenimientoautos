@@ -62,7 +62,7 @@ async function actualizarVehiculo(req, res) {
         res.status(500).json({ error: 'Error al actualizar el vehículo' });
     }
 }
-// Función para eliminar un vehículo por su placa
+
 async function eliminarVehiculo(req, res) {
     try {
         const { placa } = req.params; // Obtiene la placa desde los parámetros de la URL
