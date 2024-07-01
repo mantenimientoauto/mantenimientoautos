@@ -51,7 +51,7 @@ async function deleteRegisterById(req, res){
 }
 
 module.exports = {
-    getAllRegisters,
+    getAllRegiters,
     addRegister,
     deleteRegisterById
 };
