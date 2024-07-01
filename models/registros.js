@@ -42,6 +42,10 @@ const Mantenimiento = sequelize.define('Mantenimiento', {
   nombre: {
     type: DataTypes.STRING(100),
     allowNull: true
+  },
+  nom_tecnico: {
+    type: DataTypes.STRING(20),
+    allowNull: true
   }
 }, {
   tableName: 'mantenimientos',
