@@ -38,6 +38,10 @@ const Mantenimiento = sequelize.define('Mantenimiento', {
   url_after: {
     type: DataTypes.STRING,
     allowNull: true
+  },
+  nombre: {
+    type: DataTypes.STRING(100),
+    allowNull: true
   }
 }, {
   tableName: 'mantenimientos',

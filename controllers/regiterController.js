@@ -32,7 +32,7 @@ async function getAllRegistersByPlaca(req, res) {
 }
 
 async function addRegister(req, res){
-    const { detalles, vehiculo_placa, usuario_nit, estado, sugerencia, url_before, url_after } = req.body;
+    const { detalles, vehiculo_placa, usuario_nit, estado, sugerencia, url_before, url_after,nombre } = req.body;
 
     try {
         const nuevoMantenimiento = await Mantenimiento.create({
@@ -42,7 +42,8 @@ async function addRegister(req, res){
             estado,
             sugerencia,
             url_before,
-            url_after
+            url_after,
+            nombre
         });
         res.status(201).json(nuevoMantenimiento);
     } catch (error) {
