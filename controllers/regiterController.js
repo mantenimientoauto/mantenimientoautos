@@ -1,6 +1,6 @@
 const Mantenimiento = require("../models/registros");
 
-async function getAllRegisters(req, res){
+async function getAllRegiters(req, res){
     try {
         const registers = await Mantenimiento.findAll();
         res.status(200).json(registers);
