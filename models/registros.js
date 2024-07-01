@@ -26,6 +26,18 @@ const Mantenimiento = sequelize.define('Mantenimiento', {
   estado: {
     type: DataTypes.BOOLEAN,
     allowNull: true
+  },
+  sugerencia: {
+    type: DataTypes.STRING(300),
+    allowNull: true
+  },
+  url_before: {
+    type: DataTypes.STRING,
+    allowNull: true
+  },
+  url_after: {
+    type: DataTypes.STRING,
+    allowNull: true
   }
 }, {
   tableName: 'mantenimientos',
