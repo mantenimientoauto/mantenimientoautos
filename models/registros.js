@@ -28,7 +28,7 @@ const Mantenimiento = sequelize.define('Mantenimiento', {
     allowNull: true
   },
   sugerencia: {
-    type: DataTypes.STRING(300),
+    type: DataTypes.STRING(100),
     allowNull: true
   },
   url_before: {

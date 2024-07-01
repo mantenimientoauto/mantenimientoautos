@@ -10,6 +10,27 @@ async function getAllRegiters(req, res){
     }
 }
 
+async function getAllRegistersByPlaca(req, res) {
+    const { placa } = req.params;
+
+    try {
+        const registers = await Mantenimiento.findAll({
+            where: {
+                vehiculo_placa: placa
+            }
+        });
+
+        if (registers.length > 0) {
+            res.status(200).json(registers);
+        } else {
+            res.status(404).json({ message: `No se encontraron registros para la placa ${placa}` });
+        }
+    } catch (error) {
+        console.error(`Error al obtener los registros para la placa ${placa}:`, error);
+        res.status(500).json({ error: `Error al obtener los registros para la placa ${placa}` });
+    }
+}
+
 async function addRegister(req, res){
     const { detalles, vehiculo_placa, usuario_nit, estado, sugerencia, url_before, url_after } = req.body;
 
@@ -29,6 +50,7 @@ async function addRegister(req, res){
         res.status(500).json({ error: 'No se pudo agregar el registro de mantenimiento' });
     }
 }
+
 
 async function deleteRegisterById(req, res){
     try {
@@ -52,6 +74,7 @@ async function deleteRegisterById(req, res){
 
 module.exports = {
     getAllRegiters,
+    getAllRegistersByPlaca,
     addRegister,
     deleteRegisterById
 };
