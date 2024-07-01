@@ -74,9 +74,27 @@ async function deleteRegisterById(req, res){
     }
 }
 
+async function updateRegisterState(req, res) {
+    const { id } = req.params;
+    try {
+        const register = await Mantenimiento.findByPk(id);
+        if (register) {
+            register.estado = true;
+            await register.save();
+            res.status(200).json(register);
+        } else {
+            res.status(404).json({ message: `Registro con id ${id} no encontrado` });
+        }
+    } catch (error) {
+        console.error('Error al actualizar el estado del registro:', error);
+        res.status(500).json({ error: 'No se pudo actualizar el estado del registro' });
+    }
+}
+
 module.exports = {
     getAllRegiters,
     getAllRegistersByPlaca,
     addRegister,
-    deleteRegisterById
+    deleteRegisterById,
+    updateRegisterState
 };
