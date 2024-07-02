@@ -79,7 +79,14 @@ async function updateRegisterState(req, res) {
     try {
         const register = await Mantenimiento.findByPk(id);
         if (register) {
-            register.estado = true;
+            // Actualiza solo los campos que se pasen en el body
+            if (estado !== undefined) register.estado = estado;
+            if (sugerencia !== undefined) register.sugerencia = sugerencia;
+            if (url_before !== undefined) register.url_before = url_before;
+            if (url_after !== undefined) register.url_after = url_after;
+            if (nombre !== undefined) register.nombre = nombre;
+            if (nom_tecnico !== undefined) register.nom_tecnico = nom_tecnico;
+
             await register.save();
             res.status(200).json(register);
         } else {
