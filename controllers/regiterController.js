@@ -34,6 +34,7 @@ async function getAllRegistersByPlaca(req, res) {
 async function addRegister(req, res){
     const { detalles, vehiculo_placa, usuario_nit, estado, sugerencia, url_before, url_after,nombre, nom_tecnico } = req.body;
 
+  
     try {
         const nuevoMantenimiento = await Mantenimiento.create({
             detalles,
@@ -76,9 +77,12 @@ async function deleteRegisterById(req, res){
 
 async function updateRegisterState(req, res) {
     const { id } = req.params;
+    const {estado, sugerencia, url_before, url_after, nombre, nom_tecnico } = req.body;
+    
     try {
         const register = await Mantenimiento.findByPk(id);
         if (register) {
+
             // Actualiza solo los campos que se pasen en el body
             if (estado !== undefined) register.estado = estado;
             if (sugerencia !== undefined) register.sugerencia = sugerencia;
