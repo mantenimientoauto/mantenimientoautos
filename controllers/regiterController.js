@@ -1,4 +1,5 @@
 const Mantenimiento = require("../models/registros");
+const { Sequelize } = require('sequelize');
 
 async function getAllRegiters(req, res){
     try {
@@ -102,10 +103,25 @@ async function updateRegisterState(req, res) {
     }
 }
 
+async function countReportesPorPlaca(req, res) {
+    try {
+        const counts = await Mantenimiento.findAll({
+            attributes: ['vehiculo_placa', [Sequelize.fn('COUNT', Sequelize.col('vehiculo_placa')), 'count']],
+            group: ['vehiculo_placa'],
+            raw: true
+        });
+
+        res.status(200).json(counts);
+    } catch (error) {
+        console.error('Error al contar los reportes de mantenimiento por placa:', error);
+        res.status(500).json({ error: 'Error al contar los reportes de mantenimiento por placa'});
+    }
+}
 module.exports = {
     getAllRegiters,
     getAllRegistersByPlaca,
     addRegister,
     deleteRegisterById,
-    updateRegisterState
+    updateRegisterState,
+    countReportesPorPlaca
 };
