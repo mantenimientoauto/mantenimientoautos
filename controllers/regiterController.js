@@ -25,13 +25,15 @@ async function getAllRegistersByPlaca(req, res) {
         if (registers.length > 0) {
             res.status(200).json(registers);
         } else {
-            res.status(404).json({ message: `No se encontraron registros para la placa ${placa}` });
+            // No se encontraron registros, se devuelve un estado 204 (No Content)
+            res.status(204).end();
         }
     } catch (error) {
         console.error(`Error al obtener los registros para la placa ${placa}:`, error);
         res.status(500).json({ error: `Error al obtener los registros para la placa ${placa}` });
     }
 }
+
 
 async function addRegister(req, res){
     const { detalles, vehiculo_placa, usuario_nit, estado, sugerencia, url_before, url_after,nombre, nom_tecnico } = req.body;
