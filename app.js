@@ -19,8 +19,7 @@ const corsOptions = {
 app.use(cors(corsOptions));
 
 app.get("/", (req, res) => {
-    res.send(<h1>¡Hola usuario!</h1>);
-    console.log("Bienvenido al servidor de mantenimiento de autos");
+    null
 });
 
 // Importar y usar el enrutador para '/user' y '/vehiculos'
@@ -39,9 +38,10 @@ sequelize.authenticate()
         console.log('Modelos sincronizados con la base de datos.');
         // Iniciar el servidor una vez que todo esté listo
         app.listen(port, () => {
-            console.log('El servidor está escuchando en el puerto: ${port}');
+            console.log(`El servidor está escuchando en el puerto: ${port}`);
         });
     })
     .catch(err => {
         console.error('Error al conectar con la base de datos:', err);
     });
+
