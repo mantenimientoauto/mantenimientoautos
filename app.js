@@ -35,7 +35,7 @@ sequelize.authenticate()
         return sequelize.sync({ force: false });
     })
     .then(() => {
-        console.log('Modelos sincronizados con la base de datos.');
+        console.log('Modelos sincronizados.');
         // Iniciar el servidor una vez que todo esté listo
         app.listen(port, () => {
             console.log(`El servidor está escuchando en el puerto: ${port}`);
